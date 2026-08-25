@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>The Typing Cows · Interactive Storybook</title>
+<style>
+:root{
+  --paper:#fbf5e7;--paper2:#fffaf0;--ink:#3e352b;--muted:#7a6a57;
+  --green:#6d9a54;--green2:#edf4e8;--gold:#e4a23a;--gold2:#f8e0a7;
+  --blue:#5f91b8;--blue2:#edf5fb;--purple:#8c75ad;--purple2:#f3eef8;
+  --red:#c77d68;--line:#dcc8a5;--shadow:0 18px 50px rgba(69,53,35,.14);
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#e9dfca;color:var(--ink);font-family:Georgia,"Noto Serif SC","Songti SC","Times New Roman",serif}
+button{font:inherit;color:inherit}
+body{min-height:100vh;background:radial-gradient(circle at 50% -20%,#fff9ed 0,#efe4cf 54%,#e5d6bb 100%)}
+.app{width:min(1620px,100%);min-height:100vh;margin:auto;padding:12px;display:grid;grid-template-rows:auto 1fr auto;gap:10px}
+.header,.footer,.spread{background:rgba(255,250,240,.98);border:1.5px solid #d9c39f;box-shadow:var(--shadow)}
+.header{height:68px;border-radius:24px 24px 14px 14px;padding:8px 22px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.brand{display:flex;align-items:center;gap:14px;white-space:nowrap}.brand-mark{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#ecdfb8;border:1px solid #cdbb8b;font-size:25px}.brand h1{font-size:clamp(24px,2.5vw,40px);margin:0;letter-spacing:-.6px}.brand small{font-size:17px;color:#795537;margin-left:12px}
+.page-count{font-weight:700;font-size:20px}.tools{justify-self:end;display:flex;gap:10px;align-items:center}.pill{border:1.5px solid #cdb78f;background:#fffaf0;border-radius:999px;padding:9px 14px;font-weight:700;cursor:pointer;box-shadow:0 3px 0 rgba(112,83,48,.08)}.pill.active{background:#739f59;color:white;border-color:#628c4b}.sound-toggle{width:44px;height:44px;padding:0;display:grid;place-items:center;font-size:21px}
+.spread{border-radius:16px;min-height:0;display:grid;grid-template-columns:minmax(0,1.72fr) minmax(365px,1fr);overflow:hidden;position:relative}
+.story{padding:16px 18px 14px 18px;border-right:1.5px solid #dfcfb5;display:grid;grid-template-rows:minmax(280px,1fr) auto;gap:12px;min-width:0}.illustration{position:relative;border-radius:22px;overflow:hidden;border:1.5px solid #d7c19d;background:#d9c9ac;min-height:330px}.illustration img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}.illustration:hover img{transform:scale(1.012)}
+.hotspot{position:absolute;border:0;background:transparent;border-radius:30px;cursor:pointer;display:none}.find-mode .hotspot{display:block}.hotspot.found{outline:4px solid rgba(238,187,72,.92);background:rgba(255,241,163,.12);animation:pulse 1.1s ease infinite alternate}@keyframes pulse{to{box-shadow:0 0 0 13px rgba(242,194,80,.13)}}
+.script{padding:4px 10px 0 10px}.script-line{display:grid;grid-template-columns:42px 1fr;gap:10px;align-items:start;margin:6px 0}.num{width:34px;height:34px;border:1.5px solid #d1b780;background:#f7e8bd;border-radius:50%;display:grid;place-items:center;font-weight:800}.en{font-size:clamp(20px,1.65vw,30px);line-height:1.24;font-weight:700}.cn{font-family:"Noto Serif SC","Songti SC",serif;color:#615647;font-size:16px;line-height:1.45;margin-top:3px;display:none}.show-cn .cn{display:block}.script-actions{display:flex;justify-content:flex-end;margin-top:6px}.read-btn{border:2px solid #d68d21;background:linear-gradient(#f8dda1,#efb952);box-shadow:0 4px 0 #c9811b;border-radius:20px;padding:12px 22px;font-size:20px;font-weight:800;cursor:pointer}.read-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #c9811b}
+.learn{padding:14px 16px 16px;background:linear-gradient(180deg,#fffaf0,#faf0dc);overflow:auto}.banner{display:flex;justify-content:center;align-items:center;margin:0 0 10px}.banner span{background:#f3d689;border:1px solid #d6b55f;padding:7px 24px;border-radius:4px 18px 4px 18px;font-size:27px;font-weight:800;box-shadow:0 3px 0 rgba(126,91,43,.08);transform:rotate(-.5deg)}
+.module{border:1.5px solid #dbc7a6;background:rgba(255,252,244,.93);border-radius:18px;padding:12px 14px;margin:10px 0;box-shadow:0 4px 14px rgba(96,71,41,.05)}.module.blue{background:#f0f7fb;border-color:#a7c5d8}.module.green{background:#f0f6eb;border-color:#aec89e}.module.purple{background:#f5f0f8;border-color:#c6b6d5}.module.gold{background:#fff7df;border-color:#dfc77e}.module h3{margin:0 0 8px;font-size:21px;color:#4c773d;display:flex;align-items:center;gap:7px}.module.blue h3{color:#4d7393}.module.purple h3{color:#765f98}.module.gold h3{color:#9d742a}.question{font-size:18px;font-weight:700;margin:3px 0}.cn-inline{display:none;font-family:"Noto Serif SC","Songti SC",serif;color:#65594b;font-weight:500;font-size:14px;margin-top:3px}.show-cn .cn-inline{display:block}
+.word-grid,.choice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.word-grid.four{grid-template-columns:repeat(4,1fr)}.word-card,.choice-card{border:1.5px solid #d9c4a2;background:#fffdf7;border-radius:15px;padding:9px 7px;text-align:center;cursor:pointer;min-height:78px;box-shadow:0 3px 0 rgba(123,94,58,.06);transition:.15s}.word-card:hover,.choice-card:hover{transform:translateY(-2px)}.word-card .icon,.choice-card .icon{font-size:32px;line-height:1.1;display:block;margin-bottom:3px}.word-card strong,.choice-card strong{font-size:16px}.choice-card.selected{border-color:#5e96bd;box-shadow:0 0 0 2px #cce3f2 inset;background:#f7fbfe}.choice-card.correct{border-color:#5d9250;background:#eff8ea}.choice-card.wrong{animation:shake .3s ease}@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.feedback{min-height:24px;font-size:14px;font-weight:700;margin-top:8px;color:#5d7b4f}.feedback.try{color:#9b654e}.say-row{display:flex;align-items:center;justify-content:space-between;gap:10px}.say-text{font-size:18px;font-weight:700}.mini-audio{border:1.5px solid #c4b28e;background:#fffaf1;width:38px;height:38px;border-radius:12px;cursor:pointer}.sequence{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.seq-chip{border:1.5px solid #d5bf9e;background:white;border-radius:13px;padding:8px 10px;cursor:pointer;font-weight:700}.seq-slot{min-width:74px;min-height:39px;border:2px dashed #c7b28f;border-radius:11px;padding:7px;text-align:center;background:#fffaf0}.arrow{color:#b2935c;font-size:22px;font-weight:800}.sentence-builder{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:20px;font-weight:700}.blank{min-width:145px;padding:5px 10px;border-bottom:2px solid #6b6b5a;color:#3c6c98;text-align:center}.try-options{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}.small-option{border:1px solid #d9c3a1;background:#fffaf0;border-radius:12px;padding:8px 12px;cursor:pointer}.prediction{display:grid;grid-template-columns:1fr 1fr;gap:10px}.yes,.no{border:0;border-radius:14px;padding:11px;font-size:18px;font-weight:800;color:white;cursor:pointer}.yes{background:#78a35d}.no{background:#c9866d}
+.footer{height:68px;border-radius:14px 14px 24px 24px;padding:8px 22px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}.nav-btn{border:1.5px solid #cdb890;background:#fffaf0;border-radius:18px;padding:10px 20px;font-size:18px;font-weight:800;cursor:pointer}.nav-btn:disabled{opacity:.35;cursor:default}.next{justify-self:end;background:#719d58;color:white;border-color:#5d8948;box-shadow:0 4px 0 #537b40}.dots{display:flex;gap:13px}.dot{width:16px;height:16px;border-radius:50%;border:1.5px solid #cab995;background:#efe5d0;cursor:pointer}.dot.active{background:#78a45d;box-shadow:0 0 0 3px #dce8d4}.hint-toast{position:fixed;left:50%;bottom:86px;transform:translateX(-50%) translateY(15px);background:#4e463b;color:white;padding:10px 16px;border-radius:999px;opacity:0;pointer-events:none;transition:.25s;z-index:20;font-family:system-ui,sans-serif;font-size:14px}.hint-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:1000px){.app{padding:0}.header,.footer,.spread{border-radius:0}.header{grid-template-columns:1fr auto}.page-count{display:none}.brand small{display:none}.spread{grid-template-columns:1fr;overflow:visible}.story{border-right:0;border-bottom:1px solid #dfcfb5}.learn{overflow:visible}.footer{position:sticky;bottom:0;z-index:5}.illustration{min-height:360px}.word-grid.four{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.header{height:60px;padding:6px 10px}.brand h1{font-size:24px}.brand-mark{width:38px;height:38px}.pill{padding:7px 10px}.sound-toggle{width:38px;height:38px}.story{padding:10px}.learn{padding:10px}.illustration{min-height:280px}.en{font-size:20px}.footer{height:62px;padding:6px 10px}.nav-btn{padding:9px 12px;font-size:15px}.dots{gap:7px}.dot{width:12px;height:12px}.word-grid{grid-template-columns:repeat(3,1fr)}.banner span{font-size:22px}.module{padding:10px}}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <header class="header">
+    <div class="brand"><div class="brand-mark">🪵</div><div><h1>The Typing Cows <small>A farm story</small></h1></div></div>
+    <div class="page-count" id="pageCount">Page 1 / 12</div>
+    <div class="tools">
+      <button class="pill" id="cnToggle" aria-pressed="false">EN / 中文</button>
+      <button class="pill sound-toggle" id="soundToggle" aria-label="Toggle sound">🔊</button>
+    </div>
+  </header>
+
+  <main class="spread">
+    <section class="story">
+      <div class="illustration" id="illustration">
+        <img id="storyImage" alt="Story illustration" />
+        <button class="hotspot" id="hot1" aria-label="Find target 1"></button>
+        <button class="hotspot" id="hot2" aria-label="Find target 2"></button>
+        <button class="hotspot" id="hot3" aria-label="Find target 3"></button>
+      </div>
+      <div class="script">
+        <div id="scriptLines"></div>
+        <div class="script-actions"><button class="read-btn" id="readBtn">🔊 Read to Me</button></div>
+      </div>
+    </section>
+
+    <aside class="learn" id="learn"></aside>
+  </main>
+
+  <footer class="footer">
+    <button class="nav-btn" id="prevBtn">← Previous</button>
+    <div class="dots" id="dots"></div>
+    <button class="nav-btn next" id="nextBtn">Next Page →</button>
+  </footer>
+</div>
+<div class="hint-toast" id="toast"></div>
+<script>
+const PAGES=[
+{
+ image:'assets/page1.jpg',
+ lines:[['Farmer Brown has a farm.','Farmer Brown 有一个农场。'],['Everything seems quiet and normal.','一切看起来安静又正常。'],['Click… clack… click… clack…','咔哒……咔哒……咔哒……咔哒……']],
+ render:()=>`<div class="banner"><span>Look & Think 🔍</span></div>
+ <div class="module green"><h3>👀 Look & Think</h3><div class="question">What can you see on the farm?</div><div class="cn-inline">你在农场里看到了什么？</div>
+ <div class="word-grid four" style="margin-top:9px">${word('🐄','cow','奶牛')}${word('🐔','hen','母鸡')}${word('🦆','duck','鸭子')}${word('🏚️','barn','谷仓')}</div></div>
+ <div class="module blue"><h3>👂 Listen</h3><div class="question">Did you hear the strange sound?</div><div class="cn-inline">你听到那个奇怪的声音了吗？</div><div style="display:flex;gap:9px;margin-top:9px"><button class="yes" onclick="toast('Yes — click, clack!')">Yes! 👂</button><button class="small-option" onclick="playClickClack()">🔊 Play it again</button></div></div>
+ <div class="module gold"><h3>💭 Predict</h3><div class="question">Where is it coming from?</div><div class="cn-inline">声音是从哪里来的？</div><div style="font-size:14px;margin-top:6px;color:#79674d">We will find out on the next page!</div></div>`
+},
+{
+ image:'assets/page2.jpg',
+ lines:[['Farmer Brown hears a strange sound.','Farmer Brown 听到了一个奇怪的声音。'],['It is coming from somewhere on the farm.','声音是从农场的某个地方传来的。']],
+ render:()=>`<div class="banner"><span>Look & Think 🔍</span></div>${wordsModule([['👂','hear','听见'],['🔊','sound','声音'],['🏚️','barn','谷仓']])}
+ <div class="module blue"><h3>💭 Understand</h3><div class="question">Where is the sound coming from?</div><div class="cn-inline">声音是从哪里来的？</div><div class="choice-grid" style="margin-top:9px">${choice('🏠','Farmhouse','农舍','p2','house')}${choice('🐔🏠','Chicken Coop','鸡舍','p2','coop')}${choice('🏚️','Barn','谷仓','p2','barn')}</div><div class="feedback" id="p2fb"></div></div>
+ ${sayModule("It’s coming from the barn.",'声音是从谷仓传来的。')}
+ <div class="module blue"><strong>🚪 Let’s look inside!</strong><div class="cn-inline">让我们进去看看吧！</div></div>`
+},
+{
+ image:'assets/page3.jpg',
+ lines:[['Farmer Brown looks inside the barn.','Farmer Brown 朝谷仓里面看去。'],['He cannot believe his eyes.','他简直不敢相信自己的眼睛。'],['The cows have a typewriter!','奶牛们有一台打字机！']],
+ render:()=>`<div class="banner"><span>Look & Think 🔍</span></div>${wordsModule([['📍','inside','里面'],['⌨️','typewriter','打字机'],['🐄','cow','奶牛']])}
+ <div class="module blue"><h3>👂 Understand</h3><div class="question">Who is using the typewriter?</div><div class="cn-inline">是谁在使用打字机？</div><div class="choice-grid" style="margin-top:9px">${choice('👨‍🌾','Farmer Brown','Farmer Brown','p3','farmer')}${choice('🦆','Duck','鸭子','p3','duck')}${choice('🐄','The cows','奶牛们','p3','cows')}</div><div class="feedback" id="p3fb"></div></div>
+ <div class="module gold"><h3>🔎 Play</h3><div class="question">Find these in the picture.</div><div class="cn-inline">在图中找一找。</div><div class="try-options"><button class="small-option" onclick="findThing(1,'cow')">🐄 cow</button><button class="small-option" onclick="findThing(2,'typewriter')">⌨️ typewriter</button><button class="small-option" onclick="findThing(3,'Farmer Brown')">👨‍🌾 Farmer Brown</button></div></div>
+ ${sayModule('The cows are typing.','奶牛们正在打字。')}`,
+ hotspots:[['41%','34%','26%','47%'],['37%','61%','31%','28%'],['2%','12%','24%','70%']]
+},
+{
+ image:'assets/page4.jpg',
+ lines:[['The cows type a note.','奶牛们打出了一张纸条。'],['They want Farmer Brown to read it.','他们想让 Farmer Brown 读一读。'],['But what do they want?','可他们到底想要什么呢？']],
+ render:()=>`<div class="banner"><span>Look & Think 🔍</span></div>${wordsModule([['⌨️','type','打字'],['📄','note','纸条'],['📖','read','阅读']])}
+ <div class="module blue"><h3>🔍 Understand</h3><div class="question">What are the cows making?</div><div class="cn-inline">奶牛们做了什么？</div><div class="choice-grid" style="margin-top:9px">${choice('📘','book','书','p4','book')}${choice('📄','note','纸条','p4','note')}${choice('🗺️','map','地图','p4','map')}</div><div class="feedback" id="p4fb"></div></div>
+ <div class="module green"><h3>🧩 Play</h3><div class="question">Build the action.</div><div class="cn-inline">拼一拼这个动作。</div><div class="sequence" id="sequence"><button class="seq-chip" onclick="seqAdd('The cows')">🐄 The cows</button><span class="arrow">→</span><button class="seq-chip" onclick="seqAdd('type')">⌨️ type</button><span class="arrow">→</span><button class="seq-chip" onclick="seqAdd('a note')">📄 a note</button></div><div class="feedback" id="seqfb">Tap the parts in order.</div></div>
+ ${sayModule('They type a note.','他们打了一张纸条。')}
+ <div class="module gold"><strong>💭 What is in the note?</strong><div class="cn-inline">纸条里写了什么？</div><div style="font-size:14px;margin-top:5px">Think and find out on the next page!</div></div>`
+},
+{
+ image:'assets/page5.jpg',
+ lines:[['The barn is very cold at night.','夜里的谷仓非常冷。'],['The cows cannot get warm.','奶牛们怎么也暖和不起来。'],['They have a problem.','他们遇到了一个问题。']],
+ render:()=>`<div class="banner"><span>Look & Think 🔍</span></div>${wordsModule([['❄️','cold','寒冷的'],['☀️','warm','温暖的'],['🌙','night','夜晚']])}
+ <div class="module blue"><h3>❓ Understand</h3><div class="question">How do the cows feel?</div><div class="cn-inline">奶牛们感觉怎么样？</div><div class="choice-grid" style="margin-top:9px">${choice('☀️','hot','热的','p5feel','hot')}${choice('❄️','cold','冷的','p5feel','cold')}${choice('😴','sleepy','困的','p5feel','sleepy')}</div><div class="feedback" id="p5feelfb"></div></div>
+ <div class="module green"><h3>🧩 Play</h3><div class="question">What could help?</div><div class="cn-inline">什么能帮助他们？</div><div class="choice-grid" style="margin-top:9px">${choice('🧊','ice','冰块','p5help','ice')}${choice('🏀','ball','球','p5help','ball')}${choice('🛏️','warm blanket','暖和的毯子','p5help','blanket')}</div><div class="feedback" id="p5helpfb"></div></div>
+ <div class="module blue"><h3>💬 Say</h3><div class="say-row"><div class="say-text">I’m cold.<div class="cn-inline">我很冷。</div></div><button class="mini-audio" onclick="speak('I am cold.')">🔊</button></div><hr style="border:0;border-top:1px solid #d8c9b1"><div class="say-row"><div class="say-text">I want to be warm.<div class="cn-inline">我想暖和起来。</div></div><button class="mini-audio" onclick="speak('I want to be warm.')">🔊</button></div></div>
+ <div class="module gold"><strong>💭 The cows have an idea…</strong><div class="cn-inline">奶牛们有了一个主意……</div></div>`
+},
+{
+ image:'assets/page6.jpg',
+ lines:[['The cows ask Farmer Brown for warm blankets.','奶牛们向 Farmer Brown 要温暖的毯子。'],['They think the blankets will make the cold nights better.','他们觉得毯子会让寒冷的夜晚好过一些。'],['He reads the message.','他读起了这条信息。']],
+ render:()=>`<div class="banner"><span>Look & Think 🔍</span></div>${wordsModule([['🐄','ask for','要求；请求'],['🛏️','blanket','毯子'],['✉️','message','信息']])}
+ <div class="module blue"><h3>❓ Understand</h3><div class="question">What do the cows want?</div><div class="cn-inline">奶牛们想要什么？</div><div class="choice-grid" style="margin-top:9px">${choice('🥛','milk','牛奶','p6want','milk')}${choice('🛏️','blankets','毯子','p6want','blankets')}${choice('🥚','eggs','鸡蛋','p6want','eggs')}</div><div class="feedback" id="p6wantfb"></div></div>
+ <div class="module green"><h3>🧩 Play</h3><div class="question">Finish the message.</div><div class="cn-inline">完成这句话。</div><div class="sentence-builder">We want <span class="blank" id="blank">________</span>.</div><div class="try-options"><button class="small-option" onclick="fillBlank('milk')">milk</button><button class="small-option" onclick="fillBlank('warm blankets')">warm blankets</button><button class="small-option" onclick="fillBlank('eggs')">eggs</button></div><div class="feedback" id="blankfb"></div></div>
+ ${sayModule('We want warm blankets.','我们想要温暖的毯子。')}
+ <div class="module gold"><h3>⭐ Try It!</h3><div class="sentence-builder">We want <span class="blank" id="tryBlank">_____</span>.</div><div class="try-options"><button class="small-option" onclick="trySentence('apples')">🍎 apples</button><button class="small-option" onclick="trySentence('books')">📚 books</button><button class="small-option" onclick="trySentence('a ball')">⚽ a ball</button></div></div>
+ <div class="module purple"><h3>💭 Predict</h3><div class="question">What will Farmer Brown say?</div><div class="cn-inline">Farmer Brown 会怎么说呢？</div><div class="prediction" style="margin-top:8px"><button class="yes" onclick="toast('Maybe! Turn the page to find out.')">👍 Yes!</button><button class="no" onclick="toast('Maybe! Turn the page to find out.')">👎 No!</button></div></div>`
+},
+{
+ image:'assets/page7.jpg',
+ lines:[['Farmer Brown is surprised.','Farmer Brown 很惊讶。'],['He does not want to give the cows blankets.','他不想给奶牛们毯子。'],['His answer is NO.','他的回答是：不行！']],
+ render:()=>`<div class="banner"><span>Look & Think 🔍</span></div>${wordsModule([['😲','surprised','惊讶的'],['💬','answer','回答'],['🚫','no','不；不行']])}
+ <div class="module blue"><h3>💭 Understand</h3><div class="question">Does Farmer Brown agree?</div><div class="cn-inline">Farmer Brown 同意了吗？</div><div class="choice-grid" style="margin-top:9px">${choice('👍','Yes','同意','p7agree','yes')}${choice('👎','No','不同意','p7agree','no')}${choice('🤔','Not sure','不确定','p7agree','maybe')}</div><div class="feedback" id="p7agreefb"></div></div>
+ <div class="module green"><h3>🎭 Play · Read His Face</h3><div class="question">How does Farmer Brown feel?</div><div class="cn-inline">看看他的表情。他现在是什么感受？</div><div class="choice-grid" style="margin-top:9px">${choice('😊','happy','开心','p7feel','happy')}${choice('😲','surprised','惊讶','p7feel','surprised')}${choice('😠','upset','不高兴','p7feel','upset')}</div><div class="feedback" id="p7feelfb"></div></div>
+ <div class="module blue"><h3>💬 Say</h3><div class="say-row"><div class="say-text">He says no.<div class="cn-inline">他说不行。</div></div><button class="mini-audio" onclick="speak('He says no.')">🔊</button></div><hr style="border:0;border-top:1px solid #d8c9b1"><div class="say-row"><div class="say-text">No, he doesn’t.<div class="cn-inline">不，他不同意。</div></div><button class="mini-audio" onclick="speak('No, he does not.')">🔊</button></div></div>
+ <div class="module gold"><strong>💭 What will the cows do now?</strong><div class="cn-inline">奶牛们接下来会怎么做？</div></div>`
+},
+{
+ image:'assets/page8.jpg',
+ lines:[['The next morning, Farmer Brown comes for the milk.','第二天早上，Farmer Brown 来取牛奶。'],['But the cows give him no milk.','但是奶牛们不给他牛奶。'],['They are waiting for Farmer Brown to change his mind.','它们在等 Farmer Brown 改变主意。']],
+ render:()=>`<div class="banner"><span>Look & Think 🔍</span></div>${wordsModule([['🌅','morning','早晨'],['🥛','milk','牛奶'],['⏳','wait','等待']])}
+ <div class="module blue"><h3>❓ Understand</h3><div class="question">What is missing?</div><div class="cn-inline">少了什么？</div><div class="choice-grid" style="margin-top:9px">${choice('🥛','milk','牛奶','p8missing','milk')}${choice('🥚','eggs','鸡蛋','p8missing','eggs')}${choice('🌽','corn','玉米','p8missing','corn')}</div><div class="feedback" id="p8missingfb"></div></div>
+ <div class="module green"><h3>🧩 Play · Cause → Effect</h3><div class="question">What happened first? What happened next?</div><div class="cn-inline">什么先发生？接着发生了什么？</div><div class="sequence"><button class="seq-chip" onclick="causeAdd('no')">Farmer Brown says NO.</button><span class="arrow">→</span><button class="seq-chip" onclick="causeAdd('milk')">There is no milk.</button></div><div class="feedback" id="causefb">Tap the two events in order.</div></div>
+ <div class="module blue"><h3>💬 Say</h3><div class="say-row"><div class="say-text">There is no milk today.<div class="cn-inline">今天没有牛奶。</div></div><button class="mini-audio" onclick="speak('There is no milk today.')">🔊</button></div><hr style="border:0;border-top:1px solid #d8c9b1"><div class="say-row"><div class="say-text">Because Farmer Brown says no.<div class="cn-inline">因为 Farmer Brown 说不行。</div></div><button class="mini-audio" onclick="speak('Because Farmer Brown says no.')">🔊</button></div></div>
+ <div class="module gold"><strong>🐔 But the cows are not alone…</strong><div class="cn-inline">但是，奶牛们并不是孤军奋战……</div></div>`
+},
+{
+ image:'assets/page9.jpg',
+ lines:[['The hens are cold too.','母鸡们也觉得冷。'],['They join the cows.','它们加入了奶牛。'],['Now Farmer Brown has no milk and no eggs.','现在 Farmer Brown 既没有牛奶，也没有鸡蛋。']],
+ render:()=>`<div class="banner"><span>Look & Think 🔍</span></div>${wordsModule([['🐔','hen','母鸡'],['🥚','egg','鸡蛋'],['🤝','join','加入']])}
+ <div class="module blue"><h3>❓ Understand</h3><div class="question">Who joins the cows?</div><div class="cn-inline">谁加入了奶牛们？</div><div class="choice-grid" style="margin-top:9px">${choice('🐔','The hens','母鸡们','p9join','hens')}${choice('🦆','Duck','鸭子','p9join','duck')}${choice('🐑','The sheep','绵羊','p9join','sheep')}</div><div class="feedback" id="p9joinfb"></div></div>
+ <div class="module green"><h3>🧩 Play · Who gives what?</h3><div class="question">Match the animals with what they give.</div><div class="cn-inline">把动物和它们提供的食物配对。</div><div class="try-options"><button class="small-option" onclick="giveMatch('cows','milk')">🐄 Cows → 🥛 ?</button><button class="small-option" onclick="giveMatch('hens','eggs')">🐔 Hens → 🥚 ?</button></div><div class="feedback" id="givefb">Try both.</div></div>
+ ${sayModule('The hens join the cows.','母鸡们加入了奶牛。')}
+ <div class="module purple"><h3>💬 Say it together</h3><div class="say-row"><div class="say-text">No milk. No eggs!<div class="cn-inline">没有牛奶。也没有鸡蛋！</div></div><button class="mini-audio" onclick="speak('No milk. No eggs!')">🔊</button></div></div>
+ <div class="module gold"><strong>⌨️ Farmer Brown has something to say.</strong><div class="cn-inline">Farmer Brown 也有话要说。</div></div>`
+},
+{
+ image:'assets/page10.jpg',
+ lines:[['Farmer Brown writes back to the animals.','Farmer Brown 给动物们写了回信。'],['He needs milk and eggs to run the farm.','他需要牛奶和鸡蛋来经营农场。'],['He wants the cows and hens to work again.','他希望奶牛和母鸡重新开始工作。']],
+ render:()=>`<div class="banner"><span>Look & Think 🔍</span></div>${wordsModule([['✉️','write back','回信'],['🙌','need','需要'],['🛠️','work','工作']])}
+ <div class="module blue"><h3>❓ Understand</h3><div class="question">What does Farmer Brown need?</div><div class="cn-inline">Farmer Brown 需要什么？可以选择两个。</div><div class="choice-grid" style="margin-top:9px"><button class="choice-card" onclick="needPick('milk',this)"><span class="icon">🥛</span><strong>milk</strong><span class="cn-inline">牛奶</span></button><button class="choice-card" onclick="needPick('eggs',this)"><span class="icon">🥚</span><strong>eggs</strong><span class="cn-inline">鸡蛋</span></button><button class="choice-card" onclick="needPick('blankets',this)"><span class="icon">🛏️</span><strong>blankets</strong><span class="cn-inline">毯子</span></button></div><div class="feedback" id="needfb">Choose all that are right.</div></div>
+ <div class="module green"><h3>🧩 Play · Two Sides</h3><div class="question">What does each side want?</div><div class="cn-inline">双方分别想要什么？</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:9px"><div class="seq-slot"><strong>🐄🐔 Animals want</strong><div id="animalWant" style="margin-top:7px;color:#765f98">_____</div></div><div class="seq-slot"><strong>👨‍🌾 Farmer Brown wants</strong><div id="farmerWant" style="margin-top:7px;color:#4d7393">_____</div></div></div><div class="try-options"><button class="small-option" onclick="sidePick('animals','blankets')">🛏️ blankets</button><button class="small-option" onclick="sidePick('farmer','milk and eggs')">🥛🥚 milk & eggs</button></div><div class="feedback" id="sidefb"></div></div>
+ ${sayModule('The animals want blankets.','动物们想要毯子。')}
+ <div class="module blue"><div class="say-row"><div class="say-text">Farmer Brown needs milk and eggs.<div class="cn-inline">Farmer Brown 需要牛奶和鸡蛋。</div></div><button class="mini-audio" onclick="speak('Farmer Brown needs milk and eggs.')">🔊</button></div></div>
+ <div class="module gold"><strong>🌙 MEETING TONIGHT!</strong><div class="cn-inline">今晚开会！</div></div>`
+},
+{
+ image:'assets/page11.jpg',
+ lines:[['The animals have a meeting.','动物们开了一个会。'],['They think of a way to solve the problem.','它们想出了一个解决问题的办法。'],['Duck will carry their message to Farmer Brown.','Duck 会把它们的信息带给 Farmer Brown。']],
+ render:()=>`<div class="banner"><span>Look & Think 🔍</span></div>${wordsModule([['👥','meeting','会议'],['💡','solve','解决'],['✉️','message','信息；消息'],['🤝','deal','约定；协议']])}
+ <div class="module blue"><h3>❓ Understand</h3><div class="question">Who carries the message?</div><div class="cn-inline">谁来传递信息？</div><div class="choice-grid" style="margin-top:9px">${choice('🐄','Cow','奶牛','p11messenger','cow')}${choice('🐔','Hen','母鸡','p11messenger','hen')}${choice('🦆','Duck','鸭子','p11messenger','duck')}</div><div class="feedback" id="p11messengerfb"></div></div>
+ <div class="module green"><h3>🤝 Play · Make a Deal</h3><div class="question">Choose what each side gives.</div><div class="cn-inline">选择双方各自交出什么。</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:9px 0"><div class="seq-slot"><strong>Farmer Brown gives</strong><div id="farmerGives" style="margin-top:8px">_____</div></div><div class="seq-slot"><strong>The animals give</strong><div id="animalsGive" style="margin-top:8px">_____</div></div></div><div class="try-options"><button class="small-option" onclick="dealPick('farmer','blankets')">🛏️ blankets</button><button class="small-option" onclick="dealPick('animals','typewriter')">⌨️ typewriter</button><button class="small-option" onclick="dealPick('farmer','milk')">🥛 milk</button><button class="small-option" onclick="dealPick('animals','eggs')">🥚 eggs</button></div><div class="feedback" id="dealfb"></div></div>
+ <div class="module blue"><h3>💬 Say</h3><div class="say-row"><div class="say-text">Let’s make a deal.<div class="cn-inline">我们来达成一个约定吧。</div></div><button class="mini-audio" onclick="speak('Let us make a deal.')">🔊</button></div><hr style="border:0;border-top:1px solid #d8c9b1"><div class="say-text">You get _____. &nbsp; I get _____.</div><div class="cn-inline">你得到____。我得到____。</div></div>
+ <div class="module gold"><strong>🦆 Will Farmer Brown agree?</strong><div class="cn-inline">Farmer Brown 会同意吗？</div></div>`
+},
+{
+ image:'assets/page12.jpg',
+ lines:[['Farmer Brown agrees to the deal.','Farmer Brown 同意了这个约定。'],['The animals get their blankets. Milk and eggs are back on the farm.','动物们得到了毯子，农场又有牛奶和鸡蛋了。'],['But Duck has an idea of his own. He starts typing a new message.','但是 Duck 有了自己的主意。它开始打起了一条新的消息。']],
+ render:()=>`<div class="banner"><span>Look & Think 🔍</span></div>${wordsModule([['👍','agree','同意'],['🤝','deal','约定；协议'],['🔄','return','回来；恢复']])}
+ <div class="module blue"><h3>❓ Understand</h3><div class="question">Problem solved?</div><div class="cn-inline">问题解决了吗？</div><div class="prediction" style="margin-top:8px"><button class="yes" onclick="page12Solved(true)">✅ YES</button><button class="no" onclick="page12Solved(false)">❌ NO</button></div><div class="feedback" id="solvedfb"></div></div>
+ <div class="module green"><h3>🦆 Play · What does Duck want?</h3><div class="cn-inline">Duck 想要什么？</div><div class="choice-grid" style="margin-top:9px">${choice('🏊','something fun for the pond','池塘里好玩的东西','p12duck','pond')}${choice('🛏️','another blanket','另一条毯子','p12duck','blanket')}${choice('🥚','more eggs','更多鸡蛋','p12duck','eggs')}</div><div class="feedback" id="p12duckfb"></div></div>
+ <div class="module blue"><h3>💬 Say</h3><div class="say-row"><div class="say-text">Duck has a new idea.<div class="cn-inline">Duck 有了一个新主意。</div></div><button class="mini-audio" onclick="speak('Duck has a new idea.')">🔊</button></div><hr style="border:0;border-top:1px solid #d8c9b1"><div class="say-row"><div class="say-text">He wants a diving board.<div class="cn-inline">它想要一个跳水板。</div></div><button class="mini-audio" onclick="speak('He wants a diving board.')">🔊</button></div></div>
+ <div class="module purple"><h3>💭 Think</h3><div class="question">Was the deal fair?</div><div class="cn-inline">你觉得这个约定公平吗？</div><div class="try-options"><button class="small-option" onclick="toast('Tell someone why you think YES.')">👍 Yes</button><button class="small-option" onclick="toast('What makes you unsure?')">🤔 Not sure</button><button class="small-option" onclick="toast('Tell someone why you think NO.')">👎 No</button></div></div>`
+}
+];
+let page=0, soundOn=true, showCn=false, seq=[], causeSeq=[], needs=new Set(), gave=new Set(), dealState={farmer:null,animals:null};
+const app=document.getElementById('app'),img=document.getElementById('storyImage'),scriptLines=document.getElementById('scriptLines'),learn=document.getElementById('learn'),pageCount=document.getElementById('pageCount'),dots=document.getElementById('dots'),prevBtn=document.getElementById('prevBtn'),nextBtn=document.getElementById('nextBtn'),illustration=document.getElementById('illustration');
+function word(icon,en,cn){return `<button class="word-card" onclick="speak('${esc(en)}')"><span class="icon">${icon}</span><strong>${en}</strong><span class="cn-inline">${cn}</span></button>`}
+function choice(icon,en,cn,group,val){return `<button class="choice-card" data-group="${group}" data-value="${val}" onclick="choose('${group}','${val}',this)"><span class="icon">${icon}</span><strong>${en}</strong><span class="cn-inline">${cn}</span></button>`}
+function wordsModule(arr){return `<div class="module"><h3>📖 Words</h3><div class="word-grid ${arr.length===4?'four':''}">${arr.map(x=>word(...x)).join('')}</div></div>`}
+function sayModule(en,cn){return `<div class="module blue"><h3>💬 Say</h3><div class="say-row"><div class="say-text">${en}<div class="cn-inline">${cn}</div></div><button class="mini-audio" onclick="speak('${esc(en)}')">🔊</button></div></div>`}
+function esc(s){return s.replaceAll("'","\\'")}
+function render(){const p=PAGES[page];img.src=p.image;img.alt=`The Typing Cows, story page ${page+1}`;pageCount.textContent=`Page ${page+1} / 12`;scriptLines.innerHTML=p.lines.map((l,i)=>`<div class="script-line"><div class="num">${i+1}</div><div><div class="en">${l[0]}</div><div class="cn">${l[1]}</div></div></div>`).join('');learn.innerHTML=p.render();prevBtn.disabled=page===0;nextBtn.textContent=page===11?'Tell the Story →':'Next Page →';dots.innerHTML=PAGES.map((_,i)=>`<button class="dot ${i===page?'active':''}" onclick="go(${i})" aria-label="Page ${i+1}"></button>`).join('');setupHotspots(p.hotspots);seq=[];causeSeq=[];needs=new Set();gave=new Set();dealState={farmer:null,animals:null};syncCn()}
+function setupHotspots(hs){illustration.classList.remove('find-mode');[1,2,3].forEach(i=>{const h=document.getElementById('hot'+i);h.classList.remove('found');h.style.cssText=''});if(!hs)return;hs.forEach((a,i)=>{const h=document.getElementById('hot'+(i+1));h.style.left=a[0];h.style.top=a[1];h.style.width=a[2];h.style.height=a[3]})}
+function go(n){page=Math.max(0,Math.min(11,n));render();window.scrollTo({top:0,behavior:'smooth'})}
+prevBtn.onclick=()=>go(page-1);nextBtn.onclick=()=>{if(page<11)go(page+1);else toast('Story complete! Review & Retell comes next.')}
+function syncCn(){app.classList.toggle('show-cn',showCn);const b=document.getElementById('cnToggle');b.classList.toggle('active',showCn);b.textContent=showCn?'中文 ✓':'EN / 中文';b.setAttribute('aria-pressed',showCn?'true':'false')}
+document.getElementById('cnToggle').onclick=()=>{showCn=!showCn;syncCn()};document.getElementById('soundToggle').onclick=()=>{soundOn=!soundOn;document.getElementById('soundToggle').textContent=soundOn?'🔊':'🔇'};
+function speak(text){if(!soundOn||!('speechSynthesis'in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=.82;u.pitch=1.02;speechSynthesis.speak(u)}
+function readPage(){const t=PAGES[page].lines.map(x=>x[0]).join(' ');speak(t)}document.getElementById('readBtn').onclick=readPage;
+function playClickClack(){if(!soundOn)return;const words=['click','clack','click','clack'];let i=0;function step(){if(i>=words.length)return;const u=new SpeechSynthesisUtterance(words[i++]);u.rate=.75;u.pitch=.72;u.lang='en-US';u.onend=()=>setTimeout(step,80);speechSynthesis.speak(u)}speechSynthesis.cancel();step()}
+function choose(group,val,el){document.querySelectorAll(`[data-group="${group}"]`).forEach(x=>x.classList.remove('selected','correct','wrong'));el.classList.add('selected');let correct='',fb='',say='';
+if(group==='p2'){correct='barn';fb=val==='barn'?'Yes! It’s coming from the barn.':'Listen again… click, clack!';say="It's coming from the barn."}
+if(group==='p3'){correct='cows';fb=val==='cows'?'Yes — the cows are typing!':'Look carefully inside the barn.';say='The cows are typing.'}
+if(group==='p4'){correct='note';fb=val==='note'?'Yes! They are making a note.':'Look at the paper coming from the typewriter.';say='They type a note.'}
+if(group==='p5feel'){correct='cold';fb=val==='cold'?'Brrr! The cows are cold.':'Look at the night wind and the cows.';say="I'm cold."}
+if(group==='p5help'){correct='blanket';fb=val==='blanket'?'Ahh… warm! A blanket can help.':val==='ice'?'Brrr! Even colder!':'Fun… but still cold.';say='warm blanket'}
+if(group==='p6want'){correct='blankets';fb=val==='blankets'?'Yes! They want warm blankets.':'Look back at the cold barn.';say='We want warm blankets.'}
+if(group==='p7agree'){correct='no';fb=val==='no'?'No. He does not agree.':'Look at Farmer Brown’s answer.';say='No, he does not agree.'}
+if(group==='p7feel'){correct='upset';fb=val==='upset'?'Yes. He is getting upset.':val==='surprised'?'He was surprised first — now look again.':'Look at his face again.';say='He is upset.'}
+if(group==='p8missing'){correct='milk';fb=val==='milk'?'Yes. There is no milk.':'Look at Farmer Brown’s empty bucket.';say='There is no milk.'}
+if(group==='p9join'){correct='hens';fb=val==='hens'?'Yes! The hens join the cows.':'Look at who is standing with the cows.';say='The hens join the cows.'}
+if(group==='p11messenger'){correct='duck';fb=val==='duck'?'Yes! Duck carries the message.':'Look for the animal between both sides.';say='Duck carries the message.'}
+if(group==='p12duck'){correct='pond';fb=val==='pond'?'Yes! Duck wants something fun for the pond — a diving board!':'Look at Duck and the pond.';say='He wants a diving board.'}
+el.classList.add(val===correct?'correct':'wrong');const f=document.getElementById(group+'fb');if(f){f.textContent=fb;f.className='feedback '+(val===correct?'':'try')}if(val===correct&&say)speak(say)}
+function seqAdd(v){seq.push(v);const fb=document.getElementById('seqfb');const target=['The cows','type','a note'];const good=seq.every((x,i)=>x===target[i]);if(!good){fb.textContent='Try again: who → action → what?';fb.className='feedback try';seq=[];return}fb.textContent=seq.join(' ')+(seq.length===3?'.':' …');if(seq.length===3){speak('The cows type a note.');seq=[]}}
+function fillBlank(v){const b=document.getElementById('blank'),f=document.getElementById('blankfb');b.textContent=v;if(v==='warm blankets'){f.textContent='Click — clack — ding!';f.className='feedback';speak('We want warm blankets.')}else{f.textContent='Think about the cold barn.';f.className='feedback try'}}
+function trySentence(v){document.getElementById('tryBlank').textContent=v;speak(`We want ${v}.`)}
+function causeAdd(v){const f=document.getElementById('causefb');if(!f)return;causeSeq.push(v);const target=['no','milk'];const good=causeSeq.every((x,i)=>x===target[i]);if(!good){f.textContent='Try again: cause first, then effect.';f.className='feedback try';causeSeq=[];return}f.textContent=causeSeq.length===1?'Good — now choose the effect.':'Farmer Brown says NO → There is no milk.';f.className='feedback';if(causeSeq.length===2){speak('Farmer Brown says no. There is no milk.');causeSeq=[]}}
+function giveMatch(who,what){gave.add(who);const f=document.getElementById('givefb');if(f){f.textContent=who==='cows'?'Cows give milk.':'Hens give eggs.';f.className='feedback'}speak(who==='cows'?'Cows give milk.':'Hens give eggs.');if(gave.size===2)setTimeout(()=>toast('Now Farmer Brown has no milk and no eggs!'),350)}
+function needPick(v,el){if(v==='blankets'){el.classList.add('wrong');const f=document.getElementById('needfb');if(f){f.textContent='Blankets are what the animals want.';f.className='feedback try'}return}needs.add(v);el.classList.add('correct');const f=document.getElementById('needfb');if(f){f.textContent=needs.size===2?'Yes! Farmer Brown needs milk and eggs.':'One more.';f.className='feedback'}if(needs.size===2)speak('Farmer Brown needs milk and eggs.')}
+function sidePick(side,val){const id=side==='animals'?'animalWant':'farmerWant';const el=document.getElementById(id);if(el)el.textContent=val;const a=document.getElementById('animalWant'),f=document.getElementById('farmerWant'),fb=document.getElementById('sidefb');if(a&&f&&fb&&a.textContent!=='_____'&&f.textContent!=='_____'){fb.textContent='Both sides want something different. Can they make a deal?';fb.className='feedback';speak('The animals want blankets. Farmer Brown needs milk and eggs.')}}
+function dealPick(side,val){dealState[side]=val;const id=side==='farmer'?'farmerGives':'animalsGive';const el=document.getElementById(id);if(el)el.textContent=val;const fb=document.getElementById('dealfb');if(!fb)return;if(dealState.farmer&&dealState.animals){if(dealState.farmer==='blankets'&&dealState.animals==='typewriter'){fb.textContent='They make a deal! Blankets ↔ typewriter.';fb.className='feedback';speak('They make a deal.')}else{fb.textContent='Not quite. Think about what each side can exchange.';fb.className='feedback try'}}}
+function page12Solved(v){const f=document.getElementById('solvedfb');if(!f)return;if(v){f.textContent='Almost… Duck has a new idea!';f.className='feedback';speak('Almost. Duck has a new idea.')}else{f.textContent='Good thinking — the story is not quite over.';f.className='feedback';speak('The story is not quite over.')}}
+function findThing(i,name){illustration.classList.add('find-mode');const h=document.getElementById('hot'+i);h.classList.add('found');toast(`Found: ${name}`);setTimeout(()=>h.classList.remove('found'),1700)}
+function toast(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('show');clearTimeout(window.__tt);window.__tt=setTimeout(()=>el.classList.remove('show'),1800)}
+render();
+</script>
+</body>
+</html>
