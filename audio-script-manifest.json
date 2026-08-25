@@ -1,0 +1,553 @@
+{
+  "project": "The Typing Cows",
+  "version": "1.0",
+  "source": "Current 12-page formal website script",
+  "audio_policy": {
+    "default_language": "en-US",
+    "approved_voice": "USE_THE_NARRATOR_VOICE_ALREADY_SELECTED",
+    "chinese_audio": false,
+    "chinese_role": "Text-only comprehension scaffold",
+    "autoplay": false,
+    "narration": "One natural, expressive recording per story page",
+    "words": "Individual pronunciation files for core words/chunks",
+    "phrases": "Separate learner-friendly recordings for Say items",
+    "understand_play_feedback": "No prerecorded speech required; use visual feedback and SFX",
+    "browser_tts": "Fallback only when an audio asset fails to load"
+  },
+  "pages": [
+    {
+      "page": 1,
+      "title": "Welcome to the Farm",
+      "screen_text": [
+        "Farmer Brown has a farm.",
+        "Everything seems quiet and normal.",
+        "Click… clack… click… clack…"
+      ],
+      "narration": "Farmer Brown has a farm. Everything seems quiet and normal.",
+      "direction": "Warm and curious. After 'normal', pause and let the typewriter click-clack SFX play. Do not voice the click-clack words as speech.",
+      "words": [
+        "cow",
+        "hen",
+        "duck",
+        "barn"
+      ],
+      "say": [],
+      "sfx": [
+        "typewriter-click-clack"
+      ],
+      "narration_file": "assets/audio/narration/page-01.mp3",
+      "word_files": {
+        "cow": "assets/audio/words/cow.mp3",
+        "hen": "assets/audio/words/hen.mp3",
+        "duck": "assets/audio/words/duck.mp3",
+        "barn": "assets/audio/words/barn.mp3"
+      },
+      "say_files": {},
+      "sfx_files": {
+        "typewriter-click-clack": "assets/audio/sfx/typewriter-click-clack.mp3"
+      }
+    },
+    {
+      "page": 2,
+      "title": "Where Is the Sound Coming From?",
+      "screen_text": [
+        "Farmer Brown hears a strange sound.",
+        "It is coming from somewhere on the farm."
+      ],
+      "narration": "Farmer Brown hears a strange sound. It is coming from somewhere on the farm.",
+      "direction": "Curious and slightly mysterious, with a short pause after 'sound'.",
+      "words": [
+        "hear",
+        "sound",
+        "barn"
+      ],
+      "say": [
+        "It's coming from the barn."
+      ],
+      "sfx": [
+        "typewriter-click-clack"
+      ],
+      "narration_file": "assets/audio/narration/page-02.mp3",
+      "word_files": {
+        "hear": "assets/audio/words/hear.mp3",
+        "sound": "assets/audio/words/sound.mp3",
+        "barn": "assets/audio/words/barn.mp3"
+      },
+      "say_files": {
+        "It's coming from the barn.": "assets/audio/phrases/its-coming-from-the-barn.mp3"
+      },
+      "sfx_files": {
+        "typewriter-click-clack": "assets/audio/sfx/typewriter-click-clack.mp3"
+      }
+    },
+    {
+      "page": 3,
+      "title": "A Big Surprise",
+      "screen_text": [
+        "Farmer Brown looks inside the barn.",
+        "He cannot believe his eyes.",
+        "The cows have a typewriter!"
+      ],
+      "narration": "Farmer Brown looks inside the barn. He cannot believe his eyes. The cows have a typewriter!",
+      "direction": "Build surprise. Emphasize 'typewriter!' naturally, then allow a playful typewriter ding.",
+      "words": [
+        "inside",
+        "typewriter",
+        "cow"
+      ],
+      "say": [
+        "The cows are typing."
+      ],
+      "sfx": [
+        "typewriter-click-clack",
+        "typewriter-ding",
+        "moo-soft"
+      ],
+      "narration_file": "assets/audio/narration/page-03.mp3",
+      "word_files": {
+        "inside": "assets/audio/words/inside.mp3",
+        "typewriter": "assets/audio/words/typewriter.mp3",
+        "cow": "assets/audio/words/cow.mp3"
+      },
+      "say_files": {
+        "The cows are typing.": "assets/audio/phrases/the-cows-are-typing.mp3"
+      },
+      "sfx_files": {
+        "typewriter-click-clack": "assets/audio/sfx/typewriter-click-clack.mp3",
+        "typewriter-ding": "assets/audio/sfx/typewriter-ding.mp3",
+        "moo-soft": "assets/audio/sfx/moo-soft.mp3"
+      }
+    },
+    {
+      "page": 4,
+      "title": "A Note for Farmer Brown",
+      "screen_text": [
+        "The cows type a note.",
+        "They want Farmer Brown to read it.",
+        "But what do they want?"
+      ],
+      "narration": "The cows type a note. They want Farmer Brown to read it. But what do they want?",
+      "direction": "Storytelling tone. Make the final question genuinely curious.",
+      "words": [
+        "type",
+        "note",
+        "read"
+      ],
+      "say": [
+        "They type a note."
+      ],
+      "sfx": [
+        "typewriter-short",
+        "paper-soft",
+        "typewriter-ding"
+      ],
+      "narration_file": "assets/audio/narration/page-04.mp3",
+      "word_files": {
+        "type": "assets/audio/words/type.mp3",
+        "note": "assets/audio/words/note.mp3",
+        "read": "assets/audio/words/read.mp3"
+      },
+      "say_files": {
+        "They type a note.": "assets/audio/phrases/they-type-a-note.mp3"
+      },
+      "sfx_files": {
+        "typewriter-short": "assets/audio/sfx/typewriter-short.mp3",
+        "paper-soft": "assets/audio/sfx/paper-soft.mp3",
+        "typewriter-ding": "assets/audio/sfx/typewriter-ding.mp3"
+      }
+    },
+    {
+      "page": 5,
+      "title": "The Barn Is Cold",
+      "screen_text": [
+        "The barn is very cold at night.",
+        "The cows cannot get warm.",
+        "They have a problem."
+      ],
+      "narration": "The barn is very cold at night. The cows cannot get warm. They have a problem.",
+      "direction": "Gentle and sympathetic. Slightly slow down on 'very cold at night'.",
+      "words": [
+        "cold",
+        "warm",
+        "night"
+      ],
+      "say": [
+        "I'm cold.",
+        "I want to be warm."
+      ],
+      "sfx": [
+        "wind-soft",
+        "moo-soft"
+      ],
+      "narration_file": "assets/audio/narration/page-05.mp3",
+      "word_files": {
+        "cold": "assets/audio/words/cold.mp3",
+        "warm": "assets/audio/words/warm.mp3",
+        "night": "assets/audio/words/night.mp3"
+      },
+      "say_files": {
+        "I'm cold.": "assets/audio/phrases/im-cold.mp3",
+        "I want to be warm.": "assets/audio/phrases/i-want-to-be-warm.mp3"
+      },
+      "sfx_files": {
+        "wind-soft": "assets/audio/sfx/wind-soft.mp3",
+        "moo-soft": "assets/audio/sfx/moo-soft.mp3"
+      }
+    },
+    {
+      "page": 6,
+      "title": "What Do the Cows Want?",
+      "screen_text": [
+        "The cows ask Farmer Brown for warm blankets.",
+        "They think the blankets will make the cold nights better.",
+        "He reads the message."
+      ],
+      "narration": "The cows ask Farmer Brown for warm blankets. They think the blankets will make the cold nights better. He reads the message.",
+      "direction": "Clear and warm. Slightly emphasize 'warm blankets'.",
+      "words": [
+        "ask for",
+        "blanket",
+        "message"
+      ],
+      "say": [
+        "We want warm blankets."
+      ],
+      "optional_practice": [
+        "We want apples.",
+        "We want books.",
+        "We want a ball."
+      ],
+      "sfx": [
+        "typewriter-click-clack",
+        "typewriter-ding",
+        "paper-soft"
+      ],
+      "narration_file": "assets/audio/narration/page-06.mp3",
+      "word_files": {
+        "ask for": "assets/audio/words/ask-for.mp3",
+        "blanket": "assets/audio/words/blanket.mp3",
+        "message": "assets/audio/words/message.mp3"
+      },
+      "say_files": {
+        "We want warm blankets.": "assets/audio/phrases/we-want-warm-blankets.mp3"
+      },
+      "optional_practice_files": {
+        "We want apples.": "assets/audio/phrases/we-want-apples.mp3",
+        "We want books.": "assets/audio/phrases/we-want-books.mp3",
+        "We want a ball.": "assets/audio/phrases/we-want-a-ball.mp3"
+      },
+      "sfx_files": {
+        "typewriter-click-clack": "assets/audio/sfx/typewriter-click-clack.mp3",
+        "typewriter-ding": "assets/audio/sfx/typewriter-ding.mp3",
+        "paper-soft": "assets/audio/sfx/paper-soft.mp3"
+      }
+    },
+    {
+      "page": 7,
+      "title": "Farmer Brown Says NO",
+      "screen_text": [
+        "Farmer Brown is surprised.",
+        "He does not want to give the cows blankets.",
+        "His answer is NO."
+      ],
+      "narration": "Farmer Brown is surprised. He does not want to give the cows blankets. His answer is... NO!",
+      "direction": "Playful drama. Pause before 'NO!' and deliver NO firmly but not angrily or frighteningly.",
+      "words": [
+        "surprised",
+        "answer",
+        "no"
+      ],
+      "say": [
+        "He says no.",
+        "No, he doesn't."
+      ],
+      "sfx": [
+        "paper-thump"
+      ],
+      "narration_file": "assets/audio/narration/page-07.mp3",
+      "word_files": {
+        "surprised": "assets/audio/words/surprised.mp3",
+        "answer": "assets/audio/words/answer.mp3",
+        "no": "assets/audio/words/no.mp3"
+      },
+      "say_files": {
+        "He says no.": "assets/audio/phrases/he-says-no.mp3",
+        "No, he doesn't.": "assets/audio/phrases/no-he-doesnt.mp3"
+      },
+      "sfx_files": {
+        "paper-thump": "assets/audio/sfx/paper-thump.mp3"
+      }
+    },
+    {
+      "page": 8,
+      "title": "No Milk Today",
+      "screen_text": [
+        "The next morning, Farmer Brown comes for the milk.",
+        "But the cows give him no milk.",
+        "They are waiting for Farmer Brown to change his mind."
+      ],
+      "narration": "The next morning, Farmer Brown comes for the milk. But the cows give him no milk. They are waiting for Farmer Brown to change his mind.",
+      "direction": "Matter-of-fact with a hint of humor. Emphasize 'no milk'.",
+      "words": [
+        "morning",
+        "milk",
+        "wait"
+      ],
+      "say": [
+        "There is no milk today.",
+        "Because Farmer Brown says no."
+      ],
+      "sfx": [
+        "empty-bucket-soft",
+        "moo-soft"
+      ],
+      "narration_file": "assets/audio/narration/page-08.mp3",
+      "word_files": {
+        "morning": "assets/audio/words/morning.mp3",
+        "milk": "assets/audio/words/milk.mp3",
+        "wait": "assets/audio/words/wait.mp3"
+      },
+      "say_files": {
+        "There is no milk today.": "assets/audio/phrases/there-is-no-milk-today.mp3",
+        "Because Farmer Brown says no.": "assets/audio/phrases/because-farmer-brown-says-no.mp3"
+      },
+      "sfx_files": {
+        "empty-bucket-soft": "assets/audio/sfx/empty-bucket-soft.mp3",
+        "moo-soft": "assets/audio/sfx/moo-soft.mp3"
+      }
+    },
+    {
+      "page": 9,
+      "title": "The Hens Join In",
+      "screen_text": [
+        "The hens are cold too.",
+        "They join the cows.",
+        "Now Farmer Brown has no milk and no eggs."
+      ],
+      "narration": "The hens are cold too. They join the cows. Now Farmer Brown has no milk and no eggs.",
+      "direction": "Lightly amused. Give 'no milk and no eggs' a clear rhythmic finish.",
+      "words": [
+        "hen",
+        "egg",
+        "join"
+      ],
+      "say": [
+        "The hens join the cows.",
+        "No milk. No eggs!"
+      ],
+      "sfx": [
+        "cluck-soft",
+        "moo-soft"
+      ],
+      "narration_file": "assets/audio/narration/page-09.mp3",
+      "word_files": {
+        "hen": "assets/audio/words/hen.mp3",
+        "egg": "assets/audio/words/egg.mp3",
+        "join": "assets/audio/words/join.mp3"
+      },
+      "say_files": {
+        "The hens join the cows.": "assets/audio/phrases/the-hens-join-the-cows.mp3",
+        "No milk. No eggs!": "assets/audio/phrases/no-milk-no-eggs.mp3"
+      },
+      "sfx_files": {
+        "cluck-soft": "assets/audio/sfx/cluck-soft.mp3",
+        "moo-soft": "assets/audio/sfx/moo-soft.mp3"
+      }
+    },
+    {
+      "page": 10,
+      "title": "Farmer Brown Writes Back",
+      "screen_text": [
+        "Farmer Brown writes back to the animals.",
+        "He needs milk and eggs to run the farm.",
+        "He wants the cows and hens to work again."
+      ],
+      "narration": "Farmer Brown writes back to the animals. He needs milk and eggs to run the farm. He wants the cows and hens to work again.",
+      "direction": "Calm and explanatory. Stress the contrast between what Farmer Brown needs and what the animals want.",
+      "words": [
+        "write back",
+        "need",
+        "work"
+      ],
+      "say": [
+        "The animals want blankets.",
+        "Farmer Brown needs milk and eggs."
+      ],
+      "sfx": [
+        "typewriter-short",
+        "paper-soft"
+      ],
+      "narration_file": "assets/audio/narration/page-10.mp3",
+      "word_files": {
+        "write back": "assets/audio/words/write-back.mp3",
+        "need": "assets/audio/words/need.mp3",
+        "work": "assets/audio/words/work.mp3"
+      },
+      "say_files": {
+        "The animals want blankets.": "assets/audio/phrases/the-animals-want-blankets.mp3",
+        "Farmer Brown needs milk and eggs.": "assets/audio/phrases/farmer-brown-needs-milk-and-eggs.mp3"
+      },
+      "sfx_files": {
+        "typewriter-short": "assets/audio/sfx/typewriter-short.mp3",
+        "paper-soft": "assets/audio/sfx/paper-soft.mp3"
+      }
+    },
+    {
+      "page": 11,
+      "title": "A Farm Meeting",
+      "screen_text": [
+        "The animals have a meeting.",
+        "They think of a way to solve the problem.",
+        "Duck will carry their message to Farmer Brown."
+      ],
+      "narration": "The animals have a meeting. They think of a way to solve the problem. Duck will carry their message to Farmer Brown.",
+      "direction": "Collaborative, thoughtful tone. Make 'solve the problem' feel hopeful.",
+      "words": [
+        "meeting",
+        "solve",
+        "message",
+        "deal"
+      ],
+      "say": [
+        "Let's make a deal."
+      ],
+      "optional_practice": [
+        "You get ____. I get ____."
+      ],
+      "sfx": [
+        "barn-night-soft",
+        "paper-soft",
+        "quack-soft"
+      ],
+      "narration_file": "assets/audio/narration/page-11.mp3",
+      "word_files": {
+        "meeting": "assets/audio/words/meeting.mp3",
+        "solve": "assets/audio/words/solve.mp3",
+        "message": "assets/audio/words/message.mp3",
+        "deal": "assets/audio/words/deal.mp3"
+      },
+      "say_files": {
+        "Let's make a deal.": "assets/audio/phrases/lets-make-a-deal.mp3"
+      },
+      "optional_practice_files": {},
+      "sfx_files": {
+        "barn-night-soft": "assets/audio/sfx/barn-night-soft.mp3",
+        "paper-soft": "assets/audio/sfx/paper-soft.mp3",
+        "quack-soft": "assets/audio/sfx/quack-soft.mp3"
+      }
+    },
+    {
+      "page": 12,
+      "title": "Deal Done… Or Is It?",
+      "screen_text": [
+        "Farmer Brown agrees to the deal.",
+        "The animals get their blankets. Milk and eggs are back on the farm.",
+        "But Duck has an idea of his own. He starts typing a new message."
+      ],
+      "narration": "Farmer Brown agrees to the deal. The animals get their blankets. Milk and eggs are back on the farm. But Duck has an idea of his own... He starts typing a new message.",
+      "direction": "Begin like a happy ending. After 'But Duck has an idea of his own...', shift to playful suspense.",
+      "words": [
+        "agree",
+        "deal",
+        "return"
+      ],
+      "say": [
+        "Duck has a new idea.",
+        "He wants a diving board."
+      ],
+      "sfx": [
+        "typewriter-click-clack",
+        "typewriter-ding",
+        "quack-playful"
+      ],
+      "narration_file": "assets/audio/narration/page-12.mp3",
+      "word_files": {
+        "agree": "assets/audio/words/agree.mp3",
+        "deal": "assets/audio/words/deal.mp3",
+        "return": "assets/audio/words/return.mp3"
+      },
+      "say_files": {
+        "Duck has a new idea.": "assets/audio/phrases/duck-has-a-new-idea.mp3",
+        "He wants a diving board.": "assets/audio/phrases/he-wants-a-diving-board.mp3"
+      },
+      "sfx_files": {
+        "typewriter-click-clack": "assets/audio/sfx/typewriter-click-clack.mp3",
+        "typewriter-ding": "assets/audio/sfx/typewriter-ding.mp3",
+        "quack-playful": "assets/audio/sfx/quack-playful.mp3"
+      }
+    }
+  ],
+  "assets": {
+    "words": {
+      "cow": "assets/audio/words/cow.mp3",
+      "hen": "assets/audio/words/hen.mp3",
+      "duck": "assets/audio/words/duck.mp3",
+      "barn": "assets/audio/words/barn.mp3",
+      "hear": "assets/audio/words/hear.mp3",
+      "sound": "assets/audio/words/sound.mp3",
+      "inside": "assets/audio/words/inside.mp3",
+      "typewriter": "assets/audio/words/typewriter.mp3",
+      "type": "assets/audio/words/type.mp3",
+      "note": "assets/audio/words/note.mp3",
+      "read": "assets/audio/words/read.mp3",
+      "cold": "assets/audio/words/cold.mp3",
+      "warm": "assets/audio/words/warm.mp3",
+      "night": "assets/audio/words/night.mp3",
+      "ask for": "assets/audio/words/ask-for.mp3",
+      "blanket": "assets/audio/words/blanket.mp3",
+      "message": "assets/audio/words/message.mp3",
+      "surprised": "assets/audio/words/surprised.mp3",
+      "answer": "assets/audio/words/answer.mp3",
+      "no": "assets/audio/words/no.mp3",
+      "morning": "assets/audio/words/morning.mp3",
+      "milk": "assets/audio/words/milk.mp3",
+      "wait": "assets/audio/words/wait.mp3",
+      "egg": "assets/audio/words/egg.mp3",
+      "join": "assets/audio/words/join.mp3",
+      "write back": "assets/audio/words/write-back.mp3",
+      "need": "assets/audio/words/need.mp3",
+      "work": "assets/audio/words/work.mp3",
+      "meeting": "assets/audio/words/meeting.mp3",
+      "solve": "assets/audio/words/solve.mp3",
+      "deal": "assets/audio/words/deal.mp3",
+      "agree": "assets/audio/words/agree.mp3",
+      "return": "assets/audio/words/return.mp3"
+    },
+    "phrases": {
+      "It's coming from the barn.": "assets/audio/phrases/its-coming-from-the-barn.mp3",
+      "The cows are typing.": "assets/audio/phrases/the-cows-are-typing.mp3",
+      "They type a note.": "assets/audio/phrases/they-type-a-note.mp3",
+      "I'm cold.": "assets/audio/phrases/im-cold.mp3",
+      "I want to be warm.": "assets/audio/phrases/i-want-to-be-warm.mp3",
+      "We want warm blankets.": "assets/audio/phrases/we-want-warm-blankets.mp3",
+      "We want apples.": "assets/audio/phrases/we-want-apples.mp3",
+      "We want books.": "assets/audio/phrases/we-want-books.mp3",
+      "We want a ball.": "assets/audio/phrases/we-want-a-ball.mp3",
+      "He says no.": "assets/audio/phrases/he-says-no.mp3",
+      "No, he doesn't.": "assets/audio/phrases/no-he-doesnt.mp3",
+      "There is no milk today.": "assets/audio/phrases/there-is-no-milk-today.mp3",
+      "Because Farmer Brown says no.": "assets/audio/phrases/because-farmer-brown-says-no.mp3",
+      "The hens join the cows.": "assets/audio/phrases/the-hens-join-the-cows.mp3",
+      "No milk. No eggs!": "assets/audio/phrases/no-milk-no-eggs.mp3",
+      "The animals want blankets.": "assets/audio/phrases/the-animals-want-blankets.mp3",
+      "Farmer Brown needs milk and eggs.": "assets/audio/phrases/farmer-brown-needs-milk-and-eggs.mp3",
+      "Let's make a deal.": "assets/audio/phrases/lets-make-a-deal.mp3",
+      "Duck has a new idea.": "assets/audio/phrases/duck-has-a-new-idea.mp3",
+      "He wants a diving board.": "assets/audio/phrases/he-wants-a-diving-board.mp3"
+    },
+    "sfx": {
+      "typewriter-click-clack": "assets/audio/sfx/typewriter-click-clack.mp3",
+      "typewriter-short": "assets/audio/sfx/typewriter-short.mp3",
+      "typewriter-ding": "assets/audio/sfx/typewriter-ding.mp3",
+      "paper-soft": "assets/audio/sfx/paper-soft.mp3",
+      "paper-thump": "assets/audio/sfx/paper-thump.mp3",
+      "moo-soft": "assets/audio/sfx/moo-soft.mp3",
+      "quack-soft": "assets/audio/sfx/quack-soft.mp3",
+      "quack-playful": "assets/audio/sfx/quack-playful.mp3",
+      "wind-soft": "assets/audio/sfx/wind-soft.mp3",
+      "empty-bucket-soft": "assets/audio/sfx/empty-bucket-soft.mp3",
+      "cluck-soft": "assets/audio/sfx/cluck-soft.mp3",
+      "barn-night-soft": "assets/audio/sfx/barn-night-soft.mp3"
+    }
+  }
+}
