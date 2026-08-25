@@ -224,18 +224,14 @@
       ],
       "narration_file": "assets/audio/narration/page-06.mp3",
       "word_files": {
-        "ask for": "assets/audio/words/ask-for.mp3",
+        "ask for": "assets/audio/words/ask for.mp3",
         "blanket": "assets/audio/words/blanket.mp3",
         "message": "assets/audio/words/message.mp3"
       },
       "say_files": {
         "We want warm blankets.": "assets/audio/phrases/we-want-warm-blankets.mp3"
       },
-      "optional_practice_files": {
-        "We want apples.": "assets/audio/phrases/we-want-apples.mp3",
-        "We want books.": "assets/audio/phrases/we-want-books.mp3",
-        "We want a ball.": "assets/audio/phrases/we-want-a-ball.mp3"
-      },
+      "optional_practice_files": {},
       "sfx_files": {
         "typewriter-click-clack": "assets/audio/sfx/typewriter-click-clack.mp3",
         "typewriter-ding": "assets/audio/sfx/typewriter-ding.mp3",
@@ -433,7 +429,7 @@
       "sfx_files": {
         "barn-night-soft": "assets/audio/sfx/barn-night-soft.mp3",
         "paper-soft": "assets/audio/sfx/paper-soft.mp3",
-        "quack-soft": "assets/audio/sfx/quack-soft.mp3"
+        "quack-soft": "assets/audio/sfx/quack-playful..mp3"
       }
     },
     {
@@ -473,7 +469,7 @@
       "sfx_files": {
         "typewriter-click-clack": "assets/audio/sfx/typewriter-click-clack.mp3",
         "typewriter-ding": "assets/audio/sfx/typewriter-ding.mp3",
-        "quack-playful": "assets/audio/sfx/quack-playful.mp3"
+        "quack-playful": "assets/audio/sfx/quack-playful..mp3"
       }
     }
   ],
@@ -493,7 +489,7 @@
       "cold": "assets/audio/words/cold.mp3",
       "warm": "assets/audio/words/warm.mp3",
       "night": "assets/audio/words/night.mp3",
-      "ask for": "assets/audio/words/ask-for.mp3",
+      "ask for": "assets/audio/words/ask for.mp3",
       "blanket": "assets/audio/words/blanket.mp3",
       "message": "assets/audio/words/message.mp3",
       "surprised": "assets/audio/words/surprised.mp3",
@@ -520,9 +516,6 @@
       "I'm cold.": "assets/audio/phrases/im-cold.mp3",
       "I want to be warm.": "assets/audio/phrases/i-want-to-be-warm.mp3",
       "We want warm blankets.": "assets/audio/phrases/we-want-warm-blankets.mp3",
-      "We want apples.": "assets/audio/phrases/we-want-apples.mp3",
-      "We want books.": "assets/audio/phrases/we-want-books.mp3",
-      "We want a ball.": "assets/audio/phrases/we-want-a-ball.mp3",
       "He says no.": "assets/audio/phrases/he-says-no.mp3",
       "No, he doesn't.": "assets/audio/phrases/no-he-doesnt.mp3",
       "There is no milk today.": "assets/audio/phrases/there-is-no-milk-today.mp3",
@@ -542,8 +535,8 @@
       "paper-soft": "assets/audio/sfx/paper-soft.mp3",
       "paper-thump": "assets/audio/sfx/paper-thump.mp3",
       "moo-soft": "assets/audio/sfx/moo-soft.mp3",
-      "quack-soft": "assets/audio/sfx/quack-soft.mp3",
-      "quack-playful": "assets/audio/sfx/quack-playful.mp3",
+      "quack-soft": "assets/audio/sfx/quack-playful..mp3",
+      "quack-playful": "assets/audio/sfx/quack-playful..mp3",
       "wind-soft": "assets/audio/sfx/wind-soft.mp3",
       "empty-bucket-soft": "assets/audio/sfx/empty-bucket-soft.mp3",
       "cluck-soft": "assets/audio/sfx/cluck-soft.mp3",
